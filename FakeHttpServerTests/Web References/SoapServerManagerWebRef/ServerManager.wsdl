@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="TryUpServer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListnedUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TryUpServerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TryUpServerResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShutDownServer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ShutDownServerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateRecivedConditional">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRecivedConditionalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateRecivedConditionalResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TheConditionalShouldBeExpectPostWithRquestBody">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConditionalId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpectedRequestBody" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TheConditionalShouldBeExpectPostWithRquestBodyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ForTheConditionalResponseBodyShouldBe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ServerId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConditionalId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpectedResponseBody" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="responseHeaders" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ForTheConditionalResponseBodyShouldBeResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TryUpServerSoapIn">
+    <wsdl:part name="parameters" element="tns:TryUpServer" />
+  </wsdl:message>
+  <wsdl:message name="TryUpServerSoapOut">
+    <wsdl:part name="parameters" element="tns:TryUpServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ShutDownServerSoapIn">
+    <wsdl:part name="parameters" element="tns:ShutDownServer" />
+  </wsdl:message>
+  <wsdl:message name="ShutDownServerSoapOut">
+    <wsdl:part name="parameters" element="tns:ShutDownServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecivedConditionalSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRecivedConditional" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecivedConditionalSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRecivedConditionalResponse" />
+  </wsdl:message>
+  <wsdl:message name="TheConditionalShouldBeExpectPostWithRquestBodySoapIn">
+    <wsdl:part name="parameters" element="tns:TheConditionalShouldBeExpectPostWithRquestBody" />
+  </wsdl:message>
+  <wsdl:message name="TheConditionalShouldBeExpectPostWithRquestBodySoapOut">
+    <wsdl:part name="parameters" element="tns:TheConditionalShouldBeExpectPostWithRquestBodyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ForTheConditionalResponseBodyShouldBeSoapIn">
+    <wsdl:part name="parameters" element="tns:ForTheConditionalResponseBodyShouldBe" />
+  </wsdl:message>
+  <wsdl:message name="ForTheConditionalResponseBodyShouldBeSoapOut">
+    <wsdl:part name="parameters" element="tns:ForTheConditionalResponseBodyShouldBeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServerManagerSoap">
+    <wsdl:operation name="TryUpServer">
+      <wsdl:input message="tns:TryUpServerSoapIn" />
+      <wsdl:output message="tns:TryUpServerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ShutDownServer">
+      <wsdl:input message="tns:ShutDownServerSoapIn" />
+      <wsdl:output message="tns:ShutDownServerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecivedConditional">
+      <wsdl:input message="tns:CreateRecivedConditionalSoapIn" />
+      <wsdl:output message="tns:CreateRecivedConditionalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TheConditionalShouldBeExpectPostWithRquestBody">
+      <wsdl:input message="tns:TheConditionalShouldBeExpectPostWithRquestBodySoapIn" />
+      <wsdl:output message="tns:TheConditionalShouldBeExpectPostWithRquestBodySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ForTheConditionalResponseBodyShouldBe">
+      <wsdl:input message="tns:ForTheConditionalResponseBodyShouldBeSoapIn" />
+      <wsdl:output message="tns:ForTheConditionalResponseBodyShouldBeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServerManagerSoap" type="tns:ServerManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TryUpServer">
+      <soap:operation soapAction="http://tempuri.org/TryUpServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShutDownServer">
+      <soap:operation soapAction="http://tempuri.org/ShutDownServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecivedConditional">
+      <soap:operation soapAction="http://tempuri.org/CreateRecivedConditional" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TheConditionalShouldBeExpectPostWithRquestBody">
+      <soap:operation soapAction="http://tempuri.org/TheConditionalShouldBeExpectPostWithRquestBody" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForTheConditionalResponseBodyShouldBe">
+      <soap:operation soapAction="http://tempuri.org/ForTheConditionalResponseBodyShouldBe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServerManagerSoap12" type="tns:ServerManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TryUpServer">
+      <soap12:operation soapAction="http://tempuri.org/TryUpServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShutDownServer">
+      <soap12:operation soapAction="http://tempuri.org/ShutDownServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecivedConditional">
+      <soap12:operation soapAction="http://tempuri.org/CreateRecivedConditional" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TheConditionalShouldBeExpectPostWithRquestBody">
+      <soap12:operation soapAction="http://tempuri.org/TheConditionalShouldBeExpectPostWithRquestBody" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForTheConditionalResponseBodyShouldBe">
+      <soap12:operation soapAction="http://tempuri.org/ForTheConditionalResponseBodyShouldBe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServerManager">
+    <wsdl:port name="ServerManagerSoap" binding="tns:ServerManagerSoap">
+      <soap:address location="http://localhost:4567/ServerManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServerManagerSoap12" binding="tns:ServerManagerSoap12">
+      <soap12:address location="http://localhost:4567/ServerManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
