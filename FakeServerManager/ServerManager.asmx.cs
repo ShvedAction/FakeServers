@@ -73,5 +73,13 @@ namespace FakeServerManager
                 throw new SoapException("ServerId not match the conditionalId", new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
             recivedConditionals[ConditionalId].Response(ExpectedResponseBody, responseHeaders);
         }
+
+        [WebMethod]
+        public string[] GetReciveHistoryForFakeServer(long ServerId)
+        {
+            if (!fakeServers.ContainsKey(ServerId))
+                throw new SoapException("Do not have server with this id: " + ServerId, new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
+            return fakeServers[ServerId].GetReciveHistory();
+        }
     }
 }

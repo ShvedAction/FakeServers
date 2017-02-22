@@ -61,7 +61,7 @@ namespace FakeServers.Http
 
         public override string[] GetReciveHistory()
         {
-            throw new NotImplementedException();
+            return SoapRemoteServerManagerClient.GetReciveHistoryForFakeServer(RemoteServerId);
         }
     }
 }

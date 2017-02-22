@@ -102,10 +102,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://telecom-accept.ug.mts.ru:4567/ServerManager.asmx%3fwsdl">
+    <WebReferenceUrl Include="http://localhost:23926/ServerManager.asmx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\SoapServerManagerWebRef\</RelPath>
-      <UpdateFromURL>http://telecom-accept.ug.mts.ru:4567/ServerManager.asmx%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>http://localhost:23926/ServerManager.asmx%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

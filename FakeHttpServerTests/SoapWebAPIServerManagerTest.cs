@@ -14,21 +14,24 @@ namespace FakeHttpServerTests
     public class SoapWebAPIServerManagerTest
     {
         //const string HOST_FAKE_SERVER = "http://localhost:5000/";   
-        const string HOST_FAKE_SERVER = "http://localhost:5000/";
         const string LISTNED_HOST_FAKE_SERVER = "http://localhost:5000/";
+
+        const string REQUST_BODY = "tested value of reuqest body";
+        const string RESPONSE_BODY = "tested value of response body";
 
         [TestMethod]
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
         public void remote_manager_should_able_to_TryUpServer_on_localhost()
         {
-            const string HOST_FAKE_SERVER_LOCALHOST = "http://localhost:5000/";
-            SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager();
+            SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager() {
+                Url = TestContext.Properties["AspNetDevelopmentServer.FakeServerManager"].ToString()+ "ServerManager.asmx"
+            };
 
             long idServer = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
             try
             {
 
-                should_listining_the_host(HOST_FAKE_SERVER_LOCALHOST);
+                should_listining_the_host(LISTNED_HOST_FAKE_SERVER);
             }
             finally
             {
@@ -57,8 +60,6 @@ namespace FakeHttpServerTests
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/","/")]
         public void remote_manager_should_able_to_set_rquest_and_response_for_concret_request()
         {
-            const string REQUST_BODY = "tested value of reuqest body";
-            const string RESPONSE_BODY = "tested value of response body";
             SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager()
             {
                 Url = TestContext.Properties["AspNetDevelopmentServer.FakeServerManager"].ToString()+ "ServerManager.asmx"
@@ -66,11 +67,11 @@ namespace FakeHttpServerTests
             long serverId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
             try
             {
-                long conditionalId = client.CreateRecivedConditional(serverId);
+                long conditionalId = client.CreateRecivedConditional(serverId,0);
                 client.TheConditionalShouldBeExpectPostWithRquestBody(serverId, conditionalId, REQUST_BODY);
                 client.ForTheConditionalResponseBodyShouldBe(serverId, conditionalId, RESPONSE_BODY, null);
 
-                string actualAnswer = HttpSender.SendPost(HOST_FAKE_SERVER, REQUST_BODY);
+                string actualAnswer = HttpSender.SendPost(LISTNED_HOST_FAKE_SERVER, REQUST_BODY);
                 Assert.AreEqual(RESPONSE_BODY, actualAnswer, "Remote fake server shoul answer response like was set by method ForTheConditionalResponseBodyShouldBe");
             }
             finally
@@ -90,9 +91,15 @@ namespace FakeHttpServerTests
                 Url = TestContext.Properties["AspNetDevelopmentServer.FakeServerManager"].ToString() + "ServerManager.asmx"
             };
 
-            client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
-
-            client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
+            long servId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
+            try
+            {
+                client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
+            }
+            finally
+            {
+                client.ShutDownServer(servId);
+            }
         }
 
 
@@ -107,10 +114,41 @@ namespace FakeHttpServerTests
             };
 
             long serverId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
-            long conditionalId = client.CreateRecivedConditional(serverId);
-            client.TheConditionalShouldBeExpectPostWithRquestBody( serverId, conditionalId, "example");
-            client.ShutDownServer(serverId);
+            try
+            {
+                long conditionalId = client.CreateRecivedConditional(serverId, 0);
+                client.TheConditionalShouldBeExpectPostWithRquestBody(serverId, conditionalId, "example");
+            }
+            finally
+            {
+                client.ShutDownServer(serverId);
+            }
         }
+
+        [TestMethod]
+        [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
+        public void remote_manager_should_able_to_set_return_history_of_all_requests()
+        {
+            SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager()
+            {
+                Url = TestContext.Properties["AspNetDevelopmentServer.FakeServerManager"].ToString() + "ServerManager.asmx"
+            };
+
+            long serverId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
+            try
+            {
+                HttpSender.SendPost(LISTNED_HOST_FAKE_SERVER, REQUST_BODY);
+                string[] actualHistoryRequests = client.GetReciveHistoryForFakeServer(serverId);
+                Assert.AreEqual(1, actualHistoryRequests.Length, "Wrong count of element for array was returned by method GetReciveHistoryForFakeServer");
+                Assert.AreEqual(REQUST_BODY, actualHistoryRequests[0], "Wrong content of element for array was returned by method GetReciveHistoryForFakeServer");
+            }
+            finally
+            {
+
+                client.ShutDownServer(serverId);
+            }
+        }
+
 
         private void should_listining_the_host(string host)
         {

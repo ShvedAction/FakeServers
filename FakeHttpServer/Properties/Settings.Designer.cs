@@ -26,7 +26,7 @@ namespace FakeServers.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:4567/ServerManager.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:23926/ServerManager.asmx")]
         public string FakeServers_SoapServerManagerWebRef_ServerManager {
             get {
                 return ((string)(this["FakeServers_SoapServerManagerWebRef_ServerManager"]));

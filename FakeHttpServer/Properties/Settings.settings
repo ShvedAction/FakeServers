@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FakeServers_SoapServerManagerWebRef_ServerManager" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:4567/ServerManager.asmx</Value>
+      <Value Profile="(Default)">http://localhost:23926/ServerManager.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
