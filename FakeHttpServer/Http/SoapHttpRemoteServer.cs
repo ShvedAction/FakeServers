@@ -50,8 +50,8 @@ namespace FakeServers.Http
         {
             if (allreadyShoutDown)
                 return;
-            SoapRemoteServerManagerClient.ShutDownServer(RemoteServerId);
             allreadyShoutDown = true;
+            SoapRemoteServerManagerClient.ShutDownServer(RemoteServerId);
         }
 
         public static IFakeServer TakeListenHost(string fakeServerLListenedUrl, string hostOfRemoteServerManager)
