@@ -15,6 +15,8 @@ namespace FakeServers
             stopServer();
         }
 
+        public abstract string[] GetReciveHistory();
+
         public abstract ConditionalProducer ShouldRecived(IReciverConditional conditionType = null);
         public abstract void stopServer();
     }

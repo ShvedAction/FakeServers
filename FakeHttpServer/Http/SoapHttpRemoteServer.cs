@@ -58,5 +58,10 @@ namespace FakeServers.Http
         {
             return new SoapHttpRemoteServer(fakeServerLListenedUrl, hostOfRemoteServerManager);
         }
+
+        public override string[] GetReciveHistory()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

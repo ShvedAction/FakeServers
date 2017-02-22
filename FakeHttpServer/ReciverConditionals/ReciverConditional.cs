@@ -17,10 +17,8 @@ namespace FakeServers.ReciverConditionals
             return expectedBody == actualBody;
         }
 
-        public bool CheckResponse(HttpListenerContext requestContext)
+        public bool CheckResponse(HttpListenerContext requestContext, string actualReciveBody)
         {
-            var reader = new StreamReader(requestContext.Request.InputStream);
-            var actualReciveBody = reader.ReadToEnd();
             //выполняется только раз
             if (compareReciveResponse(expectedReciveBody, actualReciveBody) && !isRecivedSuccessRequest)
             {

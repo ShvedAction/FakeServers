@@ -9,5 +9,6 @@ namespace FakeServers
 
         void stopServer();
         void CheckAllReciverConditional();
+        string[] GetReciveHistory();
     }
 }

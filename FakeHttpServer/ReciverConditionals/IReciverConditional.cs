@@ -11,7 +11,7 @@ namespace FakeServers.ReciverConditionals
         /// </summary>
         /// <param name="requestContext">контекст запроса</param>
         /// <returns></returns>
-        bool CheckResponse(HttpListenerContext requestContext);
+        bool CheckResponse(HttpListenerContext requestContext, string alreadyReadBody);
         void SetExceptedRrequest(string body);
         void SetResponse(string body, string[] headers);
 

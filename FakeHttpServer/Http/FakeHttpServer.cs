@@ -3,6 +3,7 @@ using FakeServers.ReciverConditionals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 
@@ -16,14 +17,21 @@ namespace FakeServers.Http
         private HttpAsyncServer asyncServer;
 
         List<ConditionalProducer> recivers;
+        List<string> reciveMessages;
 
         private void onServerRecived(HttpListenerContext context)
         {
-            foreach(var reciver in recivers)
+            string body;
+            using (StreamReader reciveBodyStream = new StreamReader(context.Request.InputStream))
+            {
+                body = reciveBodyStream.ReadToEnd();
+            }
+            reciveMessages.Add(body);
+            foreach (var reciver in recivers)
             {
                 if (reciver.Conditional.IsSatisfied())
                     continue;
-                if (reciver.Conditional.CheckResponse(context))
+                if (reciver.Conditional.CheckResponse(context, body))
                 {
                     reciver.Conditional.WriteResponseToContext();
                     break;
@@ -34,6 +42,7 @@ namespace FakeServers.Http
         public FakeHttpServer(string[] listnedAddresses)
         {
             asyncServer = new HttpAsyncServer(listnedAddresses, (context) => onServerRecived(context));
+            reciveMessages = new List<string>();
             asyncServer.RunServer();
             recivers = new List<ConditionalProducer>();
         }
@@ -62,6 +71,11 @@ namespace FakeServers.Http
         public override void stopServer()
         {
             asyncServer.stop();
+        }
+
+        public override string[] GetReciveHistory()
+        {
+            return reciveMessages.ToArray();
         }
     }
 }
