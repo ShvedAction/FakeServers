@@ -7,7 +7,7 @@ namespace FakeServers
     {
         ConditionalProducer ShouldRecived(IReciverConditional conditionType = null);
 
-        void stopServer();
+        void StopServer();
         void CheckAllReciverConditional();
         string[] GetReciveHistory();
     }

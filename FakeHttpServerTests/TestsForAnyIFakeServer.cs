@@ -57,7 +57,7 @@ namespace FakeHttpServerTests
             Assert.AreEqual(RESPONSE_SEMPLE_BODY, response);
 
             fakeserver.CheckAllReciverConditional();
-            fakeserver.stopServer();
+            fakeserver.StopServer();
         }
 
         protected void any_IFakeServer_should_able_to_get_history_of_ricivers_messages()
@@ -70,7 +70,7 @@ namespace FakeHttpServerTests
             Assert.AreEqual(REQUEST_SAMPLE_BODY, actualReciveMessages[0], "Wrong content of element for array was returned by method GetReciveHistory");
             try
             {
-                fakeserver.stopServer();
+                fakeserver.StopServer();
             }
             catch (Exception)
             {
@@ -86,7 +86,7 @@ namespace FakeHttpServerTests
             Assert.AreEqual(AFakeServer.DEFAULT_RESPONSE_BODY, actualDeffaultMessage, "Wrong DeffaultMessage");
             try
             {
-                fakeserver.stopServer();
+                fakeserver.StopServer();
             }
             catch (Exception)
             {

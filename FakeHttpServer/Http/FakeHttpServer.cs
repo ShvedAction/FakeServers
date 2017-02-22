@@ -80,7 +80,7 @@ namespace FakeServers.Http
             }
         }
 
-        public override void stopServer()
+        public override void StopServer()
         {
             asyncServer.stop();
         }

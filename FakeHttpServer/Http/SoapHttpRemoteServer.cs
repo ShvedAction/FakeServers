@@ -46,7 +46,7 @@ namespace FakeServers.Http
             return conditionaProcedure;
         }
 
-        public override void stopServer()
+        public override void StopServer()
         {
             if (allreadyShoutDown)
                 return;

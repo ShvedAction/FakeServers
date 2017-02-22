@@ -14,12 +14,12 @@ namespace FakeServers
 
         public virtual void Dispose()
         {
-            stopServer();
+            StopServer();
         }
 
         public abstract string[] GetReciveHistory();
 
         public abstract ConditionalProducer ShouldRecived(IReciverConditional conditionType = null);
-        public abstract void stopServer();
+        public abstract void StopServer();
     }
 }
