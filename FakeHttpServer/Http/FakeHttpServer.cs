@@ -16,8 +16,9 @@ namespace FakeServers.Http
         const string DEFFAULT_LISTNED_ADDRESS = "http://localhost:3000/";
         private HttpAsyncServer asyncServer;
 
-        List<ConditionalProducer> recivers;
-        List<string> reciveMessages;
+        private List<ConditionalProducer> recivers;
+        private List<string> reciveMessages;
+        private ConditionalProducer deffaultAnswer = new ConditionalProducer();
 
         private void onServerRecived(HttpListenerContext context)
         {
@@ -27,6 +28,8 @@ namespace FakeServers.Http
                 body = reciveBodyStream.ReadToEnd();
             }
             reciveMessages.Add(body);
+
+            bool anyRiceveConditionalStatisvied = false;
             foreach (var reciver in recivers)
             {
                 if (reciver.Conditional.IsSatisfied())
@@ -34,9 +37,17 @@ namespace FakeServers.Http
                 if (reciver.Conditional.CheckResponse(context, body))
                 {
                     reciver.Conditional.WriteResponseToContext();
+                    anyRiceveConditionalStatisvied = true;
                     break;
                 }
             }
+            if (!anyRiceveConditionalStatisvied)
+                WriteResponseDeffultAnswer(context);
+        }
+
+        private void WriteResponseDeffultAnswer(HttpListenerContext context)
+        {
+            HttpSender.WriteResponse(context.Response, DEFAULT_RESPONSE_BODY);
         }
 
         public FakeHttpServer(string[] listnedAddresses)
@@ -45,6 +56,7 @@ namespace FakeServers.Http
             reciveMessages = new List<string>();
             asyncServer.RunServer();
             recivers = new List<ConditionalProducer>();
+            deffaultAnswer.Response(DEFAULT_RESPONSE_BODY);
         }
 
         public FakeHttpServer(string listnedAddress): this(new string[] { listnedAddress})

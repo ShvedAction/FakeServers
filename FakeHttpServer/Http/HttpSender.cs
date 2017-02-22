@@ -21,6 +21,17 @@ namespace FakeServers.Http
             return SendPost(url, body, out responseHeaders, requestHeaders);
         }
 
+        public static void WriteResponse(HttpListenerResponse response, string responseBody, string[] responseHeaders = null)
+        {
+            if (responseHeaders != null)
+                foreach (string header in responseHeaders)
+                    response.Headers.Add(header);
+            Stream stream = response.OutputStream;
+            byte[] buffer = Encoding.UTF8.GetBytes(responseBody);
+            stream.Write(buffer, 0, buffer.Length);
+            stream.Close();
+        }
+
         public static string SendPost(string url, string body, out WebHeaderCollection responseHeaders, string[] headers = null)
         {
             // Create a request using a URL that can receive a post. 

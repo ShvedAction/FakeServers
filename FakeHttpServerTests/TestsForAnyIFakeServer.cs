@@ -83,7 +83,7 @@ namespace FakeHttpServerTests
             IFakeServer fakeserver = BuildTestingServer();
             fakeserver.ShouldRecived();
             string actualDeffaultMessage = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
-            Assert.AreEqual(1, actualDeffaultMessage, "Wrong DeffaultMessage");
+            Assert.AreEqual(AFakeServer.DEFAULT_RESPONSE_BODY, actualDeffaultMessage, "Wrong DeffaultMessage");
             try
             {
                 fakeserver.stopServer();

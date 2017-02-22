@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using FakeServers.Http;
+using System.IO;
 using System.Net;
 using System.Text;
 
@@ -40,14 +41,7 @@ namespace FakeServers.ReciverConditionals
         /// <returns>Ответ для HTTPServera</returns>
         public void WriteResponseToContext()
         {
-            HttpListenerResponse response = successedContext.Response;
-            if (responseHeaders != null)
-                foreach (string header in responseHeaders)
-                    response.Headers.Add(header);
-            Stream stream = response.OutputStream;
-            byte[] buffer = Encoding.UTF8.GetBytes(responseBody);
-            stream.Write(buffer, 0, buffer.Length);
-            stream.Close();
+            HttpSender.WriteResponse(successedContext.Response,  responseBody, responseHeaders);
         }
 
         public bool IsSatisfied()
