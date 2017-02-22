@@ -42,5 +42,17 @@ namespace FakeHttpServerTests
             base.any_IFakeServer_should_return_set_response_headers();
         }
 
+        [TestMethod]
+        public void FakeHttpServer_should_able_to_get_history_of_ricivers_messages()
+        {
+            base.any_IFakeServer_should_able_to_get_history_of_ricivers_messages();
+        }
+        
+        [TestMethod]
+        public void FakeHttpServer_should_return_deffault_message_for_no_mathced_requests()
+        {
+            base.any_IFakeServer_should_return_deffault_message_for_no_mathced_requests();
+        }
+
     }
 }
