@@ -34,7 +34,7 @@ namespace FakeServers.ReciverConditionals
                 {
                     XElement expectedEl = (XElement)expecteChildNode;
                     int indexOfMatchedExpecedNode = actualChildNodes.FindIndex(actualNode => {
-                        return expectedEl.Value == "#:={Ignore the node}" || XNode.DeepEquals(actualNode, expecteChildNode);
+                        return (expectedEl.Value == "#:={Ignore the node}" && !expectedEl.HasElements) || XNode.DeepEquals(actualNode, expecteChildNode);
                         });
                     if (indexOfMatchedExpecedNode == -1)
                         potentialCandidateExpectedElements.Add(expectedEl);
