@@ -17,6 +17,8 @@ namespace FakeServers.ReciverConditionals
 
         public static bool GetDifferentForXElement(XElement nodeOfActualParse, XElement nodeOfExpectParse)
         {
+            if (nodeOfActualParse.Name != nodeOfExpectParse.Name)
+                return false;
             if (XNode.DeepEquals(nodeOfActualParse, nodeOfExpectParse))
                 return true;
             List<DifferentPairXElement> result = new List<DifferentPairXElement>();

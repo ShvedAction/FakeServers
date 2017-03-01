@@ -49,22 +49,23 @@ namespace FakeHttpServerTests.ReciverConditionalsTests
             Assert.IsFalse(comparator.compareReciveResponse(exampleOfExcepted, exampleOfActual), "Node with content:\"#:={Ignore the node}\" should ignored. See matched values in test.");
         }
 
-        /*       [TestMethod]
-               public void static_method_GetDifferentForXNode_of_XMLWithIgnoreNodeRreciverConditional_class_should_return_child_node_wich_not_matched()
-               {
-                   string exampleOfActual = "<?xml version=\"1.0\" encoding=\"utf - 8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><activateSubscription xmlns=\"http://mts.ru/\"><qwertf>safda</qwertf><subscriberid>1234465</subscriberid><serviceid>100131</serviceid><date>2016-12-17T22:17:34.0100000+03:00</date><requestid>14820022536198913146</requestid></activateSubscription></soap:Body></soap:Envelope>";
-                   string exampleOfExcepted = "<?xml version =\"1.0\" encoding=\"utf - 8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><activateSubscription xmlns=\"http://mts.ru/\"><qwertf>safda</qwertf><subscriberid>1234465</subscriberid><serviceid>100131</serviceid><date>#:={Ignore the node}</date><requestid>14820022536198913146</requestid></activateSubscription></soap:Body></soap:Envelope>";
-                   XElement nodeOfActualPase = XElement.Parse(exampleOfActual);
-                   XElement nodeOfExpectPase = XElement.Parse(exampleOfExcepted);
-                   DifferentPairXElement[] differentsXElement = XMLWithIgnoreNodeRreciverConditional.GetDifferentForXElement(nodeOfActualPase, nodeOfExpectPase);
+        [TestMethod]
+        public void method_compareReciveResponse_of_XMLWithIgnoreNodeRreciverConditional_should_return_true_for_concret_this_example()
+        {
+            string exampleOfActual = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://44.33.55.21:8880/Grdfsg\" xmlns:types=\"http://44.33.55.21:8880/Grdfsg/encodedTypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:dfaRdsfVsdfs><Site xsi:type=\"xsd:string\">sdsdfsdf_qq</Site></tns:dfaRdsfVsdfs></soap:Body></soap:Envelope>";
+            string exampleOfExcepted = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://44.33.55.21:8880/Grdfsg\" xmlns:types=\"http://44.33.55.21:8880/Grdfsg/encodedTypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:dfaRdsfVsdfs><Site xsi:type=\"xsd:string\">#:={Ignore the node}</Site></tns:dfaRdsfVsdfs></soap:Body></soap:Envelope>";
 
-                   Assert.AreEqual(1, differentsXElement.Length, "In this example has only one different XElement.");
+            XMLWithIgnoreNodeRreciverConditional comparator = new XMLWithIgnoreNodeRreciverConditional();
+            Assert.IsTrue(comparator.compareReciveResponse(exampleOfExcepted, exampleOfActual), "Node with content:\"#:={Ignore the node}\" should ignored. See matched values in test.");
+        }
+        [TestMethod]
+        public void method_compareReciveResponse_of_XMLWithIgnoreNodeRreciverConditional_should_return_false_for_concret_this_example2()
+        {
+            string exampleOfActual = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://44.33.55.21:8880/Grdfsg\" xmlns:types=\"http://44.33.55.21:8880/Grdfsg/encodedTypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:dfaRdsfVsdfs><Site xsi:type=\"xsd:string\">sdsdfsdf_qq</Site></tns:dfaRdsfVsdfs></soap:Body></soap:Envelope>";
+            string exampleOfExcepted = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://44.33.55.21:8880/Grdfsg\" xmlns:types=\"http://44.33.55.21:8880/Grdfsg/encodedTypes\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:qewWedVcx><Site xsi:type=\"xsd:string\">#:={Ignore the node}</Site></tns:qewWedVcx></soap:Body></soap:Envelope>";
 
-                   Assert.AreEqual("date", differentsXElement[0].ActualXElement.Name.LocalName);
-                   Assert.AreEqual("2016-12-17T22:17:34.0100000+03:00", differentsXElement[0].ActualXElement.Value);
-
-                   Assert.AreEqual("date", differentsXElement[0].ExpectedXElement.Name.LocalName);
-                   Assert.AreEqual("#:={Ignore the node}", differentsXElement[0].ExpectedXElement.Value);
-               }*/
+            XMLWithIgnoreNodeRreciverConditional comparator = new XMLWithIgnoreNodeRreciverConditional();
+            Assert.IsFalse(comparator.compareReciveResponse(exampleOfExcepted, exampleOfActual), "Node with content:\"#:={Ignore the node}\" should ignored. See matched values in test.");
+        }
     }
 }
