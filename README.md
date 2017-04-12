@@ -23,9 +23,9 @@ MyFakeServer.ShouldRecived().Post("ожидаемое тело запроса").
 MyFakeServer.CheckAllReciverConditional();
 ```
 
-Если хотя бы один запрос не был получен, будет проброшено исключение, по средствам Assert.Fail("Some reciver conditionals are not met.") из Microsoft.VisualStudio.TestTools.UnitTesting;
+Если хотя бы один запрос не был получен, тогда будет проброшено исключение посредством Assert.Fail("Some reciver conditionals are not met.") из Microsoft.VisualStudio.TestTools.UnitTesting;
 
-Для просмотра актуального списка, пришедших запрос, Вы можете воспользоваться методом "GetReciveHistory":
+Для просмотра актуального списка пришедших запросов Вы можете воспользоваться методом "GetReciveHistory":
 
 ```C# 
 string[] actualRequests = MyFakeServer.GetReciveHistory();
@@ -34,6 +34,6 @@ string[] actualRequests = MyFakeServer.GetReciveHistory();
 ## Подробнее.
 Предусмотрена возможность регламентировать заголовки ответа. ([примеры в тестах](FakeHttpServerTests/TestsForAnyIFakeServer.cs))
 
-Также есть возможность сравнивать XML запросы учитывая разные представления и предусмотрен вариант настройки игнорирование значений узлов.([примеры в тестах](FakeHttpServerTests/ReciverConditionalsTests/XMLReciverConditionalTest.cs))
+Также есть возможность сравнивать XML запросы учитывая разные представления и предусмотрен вариант настройки игнорирования значений узлов.([примеры в тестах](FakeHttpServerTests/ReciverConditionalsTests/XMLReciverConditionalTest.cs))
 
-Также есть возможность поднимать сервер на удалённой машине.([примеры в тестах](FakeHttpServerTests/RemoteFakeServerTest.cs))
+Есть возможность поднимать сервер на удалённой машине.([примеры в тестах](FakeHttpServerTests/RemoteFakeServerTest.cs))
