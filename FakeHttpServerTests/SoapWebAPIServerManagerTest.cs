@@ -106,7 +106,7 @@ namespace FakeHttpServerTests
         [TestMethod]
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
         [ExpectedException(typeof(SoapException))]
-        public void remote_manager_should_throw_soapException_during_call_ShutDownServer_if_some_reciver_conditional_message_is_not_met()
+        public void remote_manager_should_throw_soapException_during_call_ShutDownServer_if_some_receiver_conditional_message_is_not_met()
         {
             SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager()
             {

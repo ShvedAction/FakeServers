@@ -49,8 +49,8 @@
     <Compile Include="Http\FakeHttpServer.cs" />
     <Compile Include="Http\HttpAsyncServer.cs" />
     <Compile Include="Http\HttpSender.cs" />
-    <Compile Include="ReciverConditionals\XMLWithIgnoreNodeRreciverConditional.cs" />
-    <Compile Include="ReciverConditionals\XML\DifferentPairXNode.cs" />
+    <Compile Include="ReceiverConditionals\XMLWithIgnoreNodeRreceiverConditional.cs" />
+    <Compile Include="ReceiverConditionals\XML\DifferentPairXNode.cs" />
     <Compile Include="RemoteConditionalProducer.cs" />
     <Compile Include="Http\SoapHttpRemoteServer.cs" />
     <Compile Include="IFakeServer.cs" />
@@ -59,10 +59,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ReciverConditionals\IReciverConditional.cs" />
+    <Compile Include="ReceiverConditionals\IReceiverConditional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReciverConditionals\ReciverConditional.cs" />
-    <Compile Include="ReciverConditionals\XMLReciverConditional.cs" />
+    <Compile Include="ReceiverConditionals\ReceiverConditional.cs" />
+    <Compile Include="ReceiverConditionals\XMLReceiverConditional.cs" />
     <Compile Include="Web References\SoapServerManagerWebRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

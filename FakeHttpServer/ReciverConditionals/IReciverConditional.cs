@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace FakeServers.ReciverConditionals
+namespace FakeServers.ReceiverConditionals
 {
-    public interface IReciverConditional
+    public interface IReceiverConditional
     {
         bool IsSatisfied();
         /// <summary>

@@ -14,7 +14,7 @@ namespace FakeHttpServerTests
         protected virtual string ListenedFakeServerURL { get;}
 
         //[ExpectedException(typeof(AssertFailedException))]
-        protected  void any_IFakeServer_should_verified_recived_request()
+        protected  void any_IFakeServer_should_verified_received_request()
         {
             using (IFakeServer fakeserver = BuildTestingServer())
             {

@@ -59,8 +59,8 @@ namespace FakeHttpServerTests.ReciverConditionalsTests
 
             fakeserver = new FakeHttpServer(LISTNED_HOST);
 
-            //For this fiture should use XMLWithIgnoreNodeRreciverConditional
-            fakeserver.ShouldRecived(new XMLWithIgnoreNodeRreciverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
+            //For this fiture should use XMLWithIgnoreNodeRreceiverConditional
+            fakeserver.ShouldRecived(new XMLWithIgnoreNodeRreceiverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
 
             string actualResponse = HttpSender.SendPost(LISTNED_HOST, ACTUAL_XML);
 

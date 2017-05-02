@@ -1,4 +1,4 @@
-﻿using FakeServers.ReciverConditionals;
+﻿using FakeServers.ReceiverConditionals;
 using FakeServers.SoapServerManagerWebRef;
 
 namespace FakeServers
@@ -9,33 +9,33 @@ namespace FakeServers
         private long remoteServerId;
         private ServerManager soapRemoteServerManagerClient;
 
-        public static int GetConditionalTypeCode(IReciverConditional conditionalType)
+        public static int GetConditionalTypeCode(IReceiverConditional conditionalType)
         {
-            if (conditionalType is XMLWithIgnoreNodeRreciverConditional)
+            if (conditionalType is XMLWithIgnoreNodeRreceiverConditional)
                 return 2;
-            if (conditionalType is XMLReciverConditional)
+            if (conditionalType is XMLReceiverConditional)
                 return 1;
             return 0;
         }
 
-        public static IReciverConditional CreateReciverConditionalByCode(int conditionalTypeCode)
+        public static IReceiverConditional CreateReceiverConditionalByCode(int conditionalTypeCode)
         {
             switch (conditionalTypeCode)
             {
                 case 2:
-                    return new XMLWithIgnoreNodeRreciverConditional();
+                    return new XMLWithIgnoreNodeRreceiverConditional();
                 case 1:
-                    return new XMLReciverConditional();
+                    return new XMLReceiverConditional();
                 default:
-                    return new ReciverConditional();
+                    return new ReceiverConditional();
             }
         }
 
-        public RemoteConditionalProducer(ServerManager soapRemoteServerManagerClient, long remoteServerId, IReciverConditional conditionalType)
+        public RemoteConditionalProducer(ServerManager soapRemoteServerManagerClient, long remoteServerId, IReceiverConditional conditionalType)
         {
             this.soapRemoteServerManagerClient = soapRemoteServerManagerClient;
             this.remoteServerId = remoteServerId;
-            remoteConditionalId = soapRemoteServerManagerClient.CreateRecivedConditional(remoteServerId, GetConditionalTypeCode(conditionalType));
+            remoteConditionalId = soapRemoteServerManagerClient.CreateReceivedConditional(remoteServerId, GetConditionalTypeCode(conditionalType));
         }
 
         public override ConditionalProducer Post(string body)

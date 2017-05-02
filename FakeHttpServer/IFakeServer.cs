@@ -1,14 +1,14 @@
-﻿using FakeServers.ReciverConditionals;
+﻿using FakeServers.ReceiverConditionals;
 using System;
 
 namespace FakeServers
 {
     public interface IFakeServer : IDisposable
     {
-        ConditionalProducer ShouldRecived(IReciverConditional conditionType = null);
+        ConditionalProducer ShouldReceived(IReceiverConditional conditionType = null);
 
         void StopServer();
-        void CheckAllReciverConditional();
-        string[] GetReciveHistory();
+        void CheckAllReceiverConditional();
+        string[] GetReceiveHistory();
     }
 }

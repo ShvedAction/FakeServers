@@ -19,8 +19,8 @@ namespace FakeServerManager
     public class ServerManager : System.Web.Services.WebService
     {
         static Dictionary<long, FakeHttpServer> fakeServers = new Dictionary<long, FakeHttpServer>();
-        static Dictionary<long, ConditionalProducer> recivedConditionals = new Dictionary<long, ConditionalProducer>();
-        static Dictionary<long, long> reciveConditionalsIdsMatchServerIds = new Dictionary<long, long>();
+        static Dictionary<long, ConditionalProducer> receivedConditionals = new Dictionary<long, ConditionalProducer>();
+        static Dictionary<long, long> receiveConditionalsIdsMatchServerIds = new Dictionary<long, long>();
         static long incrementCounter = -1;
 
         [WebMethod]
@@ -53,25 +53,25 @@ namespace FakeServerManager
         public long CreateRecivedConditional(long ServerId, int ReciverConditionalType = 0)
         {
             ++incrementCounter;
-            recivedConditionals[incrementCounter] = fakeServers[ServerId].ShouldRecived(RemoteConditionalProducer.CreateReciverConditionalByCode(ReciverConditionalType));
-            reciveConditionalsIdsMatchServerIds[incrementCounter] = ServerId;
+            receivedConditionals[incrementCounter] = fakeServers[ServerId].ShouldRecived(RemoteConditionalProducer.CreateReciverConditionalByCode(ReciverConditionalType));
+            receiveConditionalsIdsMatchServerIds[incrementCounter] = ServerId;
             return incrementCounter;
         }
 
         [WebMethod]
         public void TheConditionalShouldBeExpectPostWithRquestBody(long ServerId, long ConditionalId, string ExpectedRequestBody)
         {
-            if (reciveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
+            if (receiveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
                 throw new SoapException("ServerId not match the conditionalId", new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
-            recivedConditionals[ConditionalId].Post(ExpectedRequestBody);
+            receivedConditionals[ConditionalId].Post(ExpectedRequestBody);
         }
 
         [WebMethod]
         public void ForTheConditionalResponseBodyShouldBe(long ServerId, long ConditionalId, string ExpectedResponseBody, string[] responseHeaders = null)
         {
-            if (reciveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
+            if (receiveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
                 throw new SoapException("ServerId not match the conditionalId", new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
-            recivedConditionals[ConditionalId].Response(ExpectedResponseBody, responseHeaders);
+            receivedConditionals[ConditionalId].Response(ExpectedResponseBody, responseHeaders);
         }
 
         [WebMethod]

@@ -23,7 +23,7 @@ MyFakeServer.ShouldRecived().Post("ожидаемое тело запроса").
 MyFakeServer.CheckAllReciverConditional();
 ```
 
-Если хотя бы один запрос не был получен, тогда будет проброшено исключение посредством Assert.Fail("Some reciver conditionals are not met.") из Microsoft.VisualStudio.TestTools.UnitTesting;
+Если хотя бы один запрос не был получен, тогда будет проброшено исключение посредством Assert.Fail("Some receiver conditionals are not met.") из Microsoft.VisualStudio.TestTools.UnitTesting;
 
 Для просмотра актуального списка пришедших запросов Вы можете воспользоваться методом "GetReciveHistory":
 

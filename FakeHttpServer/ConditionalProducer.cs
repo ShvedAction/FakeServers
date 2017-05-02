@@ -1,18 +1,18 @@
 ﻿
-using FakeServers.ReciverConditionals;
+using FakeServers.ReceiverConditionals;
 
 namespace FakeServers
 {
 
     public class ConditionalProducer
     {
-        private IReciverConditional _conditional;
+        private IReceiverConditional _conditional;
 
-        public IReciverConditional Conditional { get { return _conditional; } }
+        public IReceiverConditional Conditional { get { return _conditional; } }
 
-        public ConditionalProducer(IReciverConditional conditionalType = null)
+        public ConditionalProducer(IReceiverConditional conditionalType = null)
         {
-            _conditional = conditionalType?? new ReciverConditional();
+            _conditional = conditionalType?? new ReceiverConditional();
         }
 
         public virtual ConditionalProducer Post(string body)

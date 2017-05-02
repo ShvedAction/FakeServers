@@ -3,29 +3,29 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace FakeServers.ReciverConditionals
+namespace FakeServers.ReceiverConditionals
 {
-    public class ReciverConditional : IReciverConditional
+    public class ReceiverConditional : IReceiverConditional
     {
         protected string responseBody;
-        protected string expectedReciveBody;
-        protected bool isRecivedSuccessRequest;
+        protected string expectedReceiveBody;
+        protected bool isReceivedSuccessRequest;
         protected HttpListenerContext successedContext;
         private string[] responseHeaders;
 
-        public virtual bool compareReciveResponse(string expectedBody, string actualBody)
+        public virtual bool compareReceiveResponse(string expectedBody, string actualBody)
         {
             return expectedBody == actualBody;
         }
 
-        public bool CheckResponse(HttpListenerContext requestContext, string actualReciveBody)
+        public bool CheckResponse(HttpListenerContext requestContext, string actualReceiveBody)
         {
             //выполняется только раз
-            if (compareReciveResponse(expectedReciveBody, actualReciveBody) && !isRecivedSuccessRequest)
+            if (compareReceiveResponse(expectedReceiveBody, actualReceiveBody) && !isReceivedSuccessRequest)
             {
                 //в этом контесте сформируется ответ
                 successedContext = requestContext;
-                isRecivedSuccessRequest = true;
+                isReceivedSuccessRequest = true;
                 return true;
             }
             else
@@ -46,7 +46,7 @@ namespace FakeServers.ReciverConditionals
 
         public bool IsSatisfied()
         {
-            return isRecivedSuccessRequest;
+            return isReceivedSuccessRequest;
         }
 
         public void SetResponse(string body, string[] headers =null)
@@ -57,7 +57,7 @@ namespace FakeServers.ReciverConditionals
 
         public void SetExceptedRrequest(string body)
         {
-            expectedReciveBody = body;
+            expectedReceiveBody = body;
         }
     }
 }
