@@ -49,7 +49,7 @@
     <Compile Include="Http\FakeHttpServer.cs" />
     <Compile Include="Http\HttpAsyncServer.cs" />
     <Compile Include="Http\HttpSender.cs" />
-    <Compile Include="ReceiverConditionals\XMLWithIgnoreNodeRreceiverConditional.cs" />
+    <Compile Include="ReceiverConditionals\XMLWithIgnoreNodeReceiverConditional.cs" />
     <Compile Include="ReceiverConditionals\XML\DifferentPairXNode.cs" />
     <Compile Include="RemoteConditionalProducer.cs" />
     <Compile Include="Http\SoapHttpRemoteServer.cs" />

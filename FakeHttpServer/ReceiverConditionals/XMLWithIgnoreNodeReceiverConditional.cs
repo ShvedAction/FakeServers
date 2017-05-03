@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace FakeServers.ReceiverConditionals
 {
-    public class XMLWithIgnoreNodeRreceiverConditional: ReceiverConditional
+    public class XMLWithIgnoreNodeReceiverConditional: ReceiverConditional
     {
 
         public override bool compareReceiveResponse(string expectedBody, string actualBody)

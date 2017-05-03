@@ -67,8 +67,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ReciverConditionalsTests\XMLReciverConditionalTest.cs" />
-    <Compile Include="ReciverConditionalsTests\XMLWithIgnoreNodeRreceiverConditionalTest.cs" />
+    <Compile Include="ReceiverConditionalsTests\XMLReciverConditionalTest.cs" />
+    <Compile Include="ReceiverConditionalsTests\XMLWithIgnoreNodeReceiverConditionalTest.cs" />
     <Compile Include="RemoteFakeServerTest.cs" />
     <Compile Include="SoapWebAPIServerManagerTest.cs" />
     <Compile Include="TestsForAnyIFakeServer.cs" />

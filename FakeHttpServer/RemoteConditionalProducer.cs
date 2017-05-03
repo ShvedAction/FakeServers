@@ -11,7 +11,7 @@ namespace FakeServers
 
         public static int GetConditionalTypeCode(IReceiverConditional conditionalType)
         {
-            if (conditionalType is XMLWithIgnoreNodeRreceiverConditional)
+            if (conditionalType is XMLWithIgnoreNodeReceiverConditional)
                 return 2;
             if (conditionalType is XMLReceiverConditional)
                 return 1;
@@ -23,7 +23,7 @@ namespace FakeServers
             switch (conditionalTypeCode)
             {
                 case 2:
-                    return new XMLWithIgnoreNodeRreceiverConditional();
+                    return new XMLWithIgnoreNodeReceiverConditional();
                 case 1:
                     return new XMLReceiverConditional();
                 default:
