@@ -54,7 +54,7 @@ namespace FakeHttpServerTests
 
         [TestMethod]
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
-        [ExpectedException(typeof(AssertFailedException))]
+        [ExpectedException(typeof(Exception))]
         public void RemoteFakeServer_should_verified_received_request()
         {
             base.any_IFakeServer_should_verified_received_request();

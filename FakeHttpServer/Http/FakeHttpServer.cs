@@ -1,7 +1,5 @@
 ﻿using FakeHttpServFakeServers.Httper;
 using FakeServers.ReceiverConditionals;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -76,7 +74,7 @@ namespace FakeServers.Http
         {
             if (receivers.Count>0 && !receivers.Any(receiver => receiver.Conditional.IsSatisfied()))
             {
-                Assert.Fail("Some receiver conditionals are not met.");
+                throw new System.Exception("Some receiver conditionals are not met.");
             }
         }
 

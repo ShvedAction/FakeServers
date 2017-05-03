@@ -1,8 +1,6 @@
-﻿using System;
-using FakeServers.ReceiverConditionals;
+﻿using FakeServers.ReceiverConditionals;
 using System.Collections.Generic;
 using System.Web.Services.Protocols;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FakeServers.Http
 {
@@ -35,7 +33,7 @@ namespace FakeServers.Http
             }
             catch(SoapException e)
             {
-                Assert.Fail("Maybe Some receiver conditionals are not met. Detail: "+e.Message);
+                throw new System.Exception("Maybe Some receiver conditionals are not met. Detail: "+e.Message);
             }
         }
 
