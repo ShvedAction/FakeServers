@@ -1,11 +1,11 @@
 ﻿using System.Xml.Linq;
 
-namespace FakeServers.ReciverConditionals
+namespace FakeServers.ReceiverConditionals
 {
-    public class XMLReciverConditional : ReciverConditional
+    public class XMLReceiverConditional : ReceiverConditional
     {
 
-        public override bool compareReciveResponse(string expectedBody, string actualBody)
+        public override bool compareReceiveResponse(string expectedBody, string actualBody)
         {
             var expectedXML = XElement.Parse(expectedBody);
             var actualXML = XElement.Parse(actualBody);

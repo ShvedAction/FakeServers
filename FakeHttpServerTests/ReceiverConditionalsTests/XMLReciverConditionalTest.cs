@@ -1,10 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FakeServers;
 using FakeServers.Http;
-using FakeServers.ReciverConditionals;
+using FakeServers.ReceiverConditionals;
 
 namespace FakeHttpServerTests.ReciverConditionalsTests
 {
@@ -35,12 +32,12 @@ namespace FakeHttpServerTests.ReciverConditionalsTests
 
             fakeserver = new FakeHttpServer(LISTNED_HOST);
 
-            fakeserver.ShouldRecived(new XMLReciverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
+            fakeserver.ShouldReceived(new XMLReceiverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
 
             string actualResponse = HttpSender.SendPost(LISTNED_HOST, ACTUAL_XML);
 
             Assert.AreEqual(SUCCESS_RESPONSE, actualResponse, "Wrong response");
-            fakeserver.CheckAllReciverConditional();
+            fakeserver.CheckAllReceiverConditional();
         }
 
         [TestMethod]
@@ -59,13 +56,13 @@ namespace FakeHttpServerTests.ReciverConditionalsTests
 
             fakeserver = new FakeHttpServer(LISTNED_HOST);
 
-            //For this fiture should use XMLWithIgnoreNodeRreciverConditional
-            fakeserver.ShouldRecived(new XMLWithIgnoreNodeRreciverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
+            //For this fiture should use XMLWithIgnoreNodeRreceiverConditional
+            fakeserver.ShouldReceived(new XMLWithIgnoreNodeReceiverConditional()).Post(EXPECTED_XML).Response(SUCCESS_RESPONSE);
 
             string actualResponse = HttpSender.SendPost(LISTNED_HOST, ACTUAL_XML);
 
             Assert.AreEqual(SUCCESS_RESPONSE, actualResponse, "Wrong response");
-            fakeserver.CheckAllReciverConditional();
+            fakeserver.CheckAllReceiverConditional();
         }
     }
 }

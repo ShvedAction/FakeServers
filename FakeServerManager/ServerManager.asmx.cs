@@ -1,7 +1,5 @@
 ﻿using FakeServers;
 using FakeServers.Http;
-using FakeServers.ReciverConditionals;
-using System;
 using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Services.Protocols;
@@ -19,8 +17,8 @@ namespace FakeServerManager
     public class ServerManager : System.Web.Services.WebService
     {
         static Dictionary<long, FakeHttpServer> fakeServers = new Dictionary<long, FakeHttpServer>();
-        static Dictionary<long, ConditionalProducer> recivedConditionals = new Dictionary<long, ConditionalProducer>();
-        static Dictionary<long, long> reciveConditionalsIdsMatchServerIds = new Dictionary<long, long>();
+        static Dictionary<long, ConditionalProducer> receivedConditionals = new Dictionary<long, ConditionalProducer>();
+        static Dictionary<long, long> receiveConditionalsIdsMatchServerIds = new Dictionary<long, long>();
         static long incrementCounter = -1;
 
         [WebMethod]
@@ -36,7 +34,7 @@ namespace FakeServerManager
         {
             try
             {
-                fakeServers[ServerId].CheckAllReciverConditional();
+                fakeServers[ServerId].CheckAllReceiverConditional();
             }finally
             {
                 fakeServers[ServerId].Dispose();
@@ -50,36 +48,36 @@ namespace FakeServerManager
         /// <param name="ReciverConditionalType"></param>
         /// <returns></returns>
         [WebMethod]
-        public long CreateRecivedConditional(long ServerId, int ReciverConditionalType = 0)
+        public long CreateReceivedConditional(long ServerId, int ReciverConditionalType = 0)
         {
             ++incrementCounter;
-            recivedConditionals[incrementCounter] = fakeServers[ServerId].ShouldRecived(RemoteConditionalProducer.CreateReciverConditionalByCode(ReciverConditionalType));
-            reciveConditionalsIdsMatchServerIds[incrementCounter] = ServerId;
+            receivedConditionals[incrementCounter] = fakeServers[ServerId].ShouldReceived(RemoteConditionalProducer.CreateReceiverConditionalByCode(ReciverConditionalType));
+            receiveConditionalsIdsMatchServerIds[incrementCounter] = ServerId;
             return incrementCounter;
         }
 
         [WebMethod]
         public void TheConditionalShouldBeExpectPostWithRquestBody(long ServerId, long ConditionalId, string ExpectedRequestBody)
         {
-            if (reciveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
+            if (receiveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
                 throw new SoapException("ServerId not match the conditionalId", new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
-            recivedConditionals[ConditionalId].Post(ExpectedRequestBody);
+            receivedConditionals[ConditionalId].Post(ExpectedRequestBody);
         }
 
         [WebMethod]
         public void ForTheConditionalResponseBodyShouldBe(long ServerId, long ConditionalId, string ExpectedResponseBody, string[] responseHeaders = null)
         {
-            if (reciveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
+            if (receiveConditionalsIdsMatchServerIds[ConditionalId] != ServerId)
                 throw new SoapException("ServerId not match the conditionalId", new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
-            recivedConditionals[ConditionalId].Response(ExpectedResponseBody, responseHeaders);
+            receivedConditionals[ConditionalId].Response(ExpectedResponseBody, responseHeaders);
         }
 
         [WebMethod]
-        public string[] GetReciveHistoryForFakeServer(long ServerId)
+        public string[] GetReceiveHistoryForFakeServer(long ServerId)
         {
             if (!fakeServers.ContainsKey(ServerId))
                 throw new SoapException("Do not have server with this id: " + ServerId, new System.Xml.XmlQualifiedName("BadMatchConditionalId"));
-            return fakeServers[ServerId].GetReciveHistory();
+            return fakeServers[ServerId].GetReceiveHistory();
         }
     }
 }

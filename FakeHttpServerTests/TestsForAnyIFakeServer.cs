@@ -14,12 +14,12 @@ namespace FakeHttpServerTests
         protected virtual string ListenedFakeServerURL { get;}
 
         //[ExpectedException(typeof(AssertFailedException))]
-        protected  void any_IFakeServer_should_verified_recived_request()
+        protected  void any_IFakeServer_should_verified_received_request()
         {
             using (IFakeServer fakeserver = BuildTestingServer())
             {
-                fakeserver.ShouldRecived();
-                fakeserver.CheckAllReciverConditional();
+                fakeserver.ShouldReceived();
+                fakeserver.CheckAllReceiverConditional();
             }
         }
 
@@ -29,7 +29,7 @@ namespace FakeHttpServerTests
         {
             using (IFakeServer fakeserver = BuildTestingServer())
             {
-                fakeserver.ShouldRecived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY);
+                fakeserver.ShouldReceived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY);
                 var response = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
                 Assert.AreEqual(RESPONSE_SEMPLE_BODY, response);
             }
@@ -42,7 +42,7 @@ namespace FakeHttpServerTests
             string[] exampleResponseHeaders = new string[] { EXAMPLE_HEADER_KEY+": "+ EXAMPLE_HEADER_VALUE };
             using (IFakeServer fakeserver = BuildTestingServer())
             {
-                fakeserver.ShouldRecived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY, exampleResponseHeaders);
+                fakeserver.ShouldReceived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY, exampleResponseHeaders);
                 WebHeaderCollection responseHeaders = null;
                 HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY, out responseHeaders);
                 Assert.AreEqual(EXAMPLE_HEADER_VALUE, responseHeaders[EXAMPLE_HEADER_KEY], "Wrong value in actual response headers");
@@ -52,22 +52,22 @@ namespace FakeHttpServerTests
         protected void any_IFakeServer_should_stop_without_exception()
         {
             IFakeServer fakeserver = BuildTestingServer();
-            fakeserver.ShouldRecived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY);
+            fakeserver.ShouldReceived().Post(REQUEST_SAMPLE_BODY).Response(RESPONSE_SEMPLE_BODY);
             var response = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
             Assert.AreEqual(RESPONSE_SEMPLE_BODY, response);
 
-            fakeserver.CheckAllReciverConditional();
+            fakeserver.CheckAllReceiverConditional();
             fakeserver.StopServer();
         }
 
         protected void any_IFakeServer_should_able_to_get_history_of_ricivers_messages()
         {
             IFakeServer fakeserver = BuildTestingServer();
-            fakeserver.ShouldRecived();
+            fakeserver.ShouldReceived();
             HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
-            string[] actualReciveMessages = fakeserver.GetReciveHistory();
-            Assert.AreEqual(1, actualReciveMessages.Length, "Wrong count of element for array was returned by method GetReciveHistory");
-            Assert.AreEqual(REQUEST_SAMPLE_BODY, actualReciveMessages[0], "Wrong content of element for array was returned by method GetReciveHistory");
+            string[] actualReceiveMessages = fakeserver.GetReceiveHistory();
+            Assert.AreEqual(1, actualReceiveMessages.Length, "Wrong count of element for array was returned by method GetReceiveHistory");
+            Assert.AreEqual(REQUEST_SAMPLE_BODY, actualReceiveMessages[0], "Wrong content of element for array was returned by method GetReceiveHistory");
             try
             {
                 fakeserver.StopServer();
@@ -81,7 +81,7 @@ namespace FakeHttpServerTests
         protected void any_IFakeServer_should_return_deffault_message_for_no_mathced_requests()
         {
             IFakeServer fakeserver = BuildTestingServer();
-            fakeserver.ShouldRecived();
+            fakeserver.ShouldReceived();
             string actualDeffaultMessage = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
             Assert.AreEqual(AFakeServer.DEFAULT_RESPONSE_BODY, actualDeffaultMessage, "Wrong DeffaultMessage");
             try

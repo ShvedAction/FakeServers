@@ -1,5 +1,5 @@
 ﻿using System;
-using FakeServers.ReciverConditionals;
+using FakeServers.ReceiverConditionals;
 using System.Collections.Generic;
 using System.Web.Services.Protocols;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +12,7 @@ namespace FakeServers.Http
         private long RemoteServerId;
 
 
-        private List<RemoteConditionalProducer> recivers;
+        private List<RemoteConditionalProducer> receivers;
         private bool allreadyShoutDown;
 
         public SoapHttpRemoteServer(string fakeServerListenedUrl, string hostOfRemoteServerManager)
@@ -23,10 +23,10 @@ namespace FakeServers.Http
             };
             RemoteServerId = SoapRemoteServerManagerClient.TryUpServer(fakeServerListenedUrl);
             allreadyShoutDown = false;
-            recivers = new List<RemoteConditionalProducer>();
+            receivers = new List<RemoteConditionalProducer>();
         }
 
-        public override void CheckAllReciverConditional()
+        public override void CheckAllReceiverConditional()
         {
             try
             {
@@ -35,14 +35,14 @@ namespace FakeServers.Http
             }
             catch(SoapException e)
             {
-                Assert.Fail("Maybe Some reciver conditionals are not met. Detail: "+e.Message);
+                Assert.Fail("Maybe Some receiver conditionals are not met. Detail: "+e.Message);
             }
         }
 
-        public override ConditionalProducer ShouldRecived(IReciverConditional conditionType = null)
+        public override ConditionalProducer ShouldReceived(IReceiverConditional conditionType = null)
         {
             RemoteConditionalProducer conditionaProcedure = new RemoteConditionalProducer(SoapRemoteServerManagerClient, RemoteServerId, conditionType);
-            recivers.Add(conditionaProcedure);
+            receivers.Add(conditionaProcedure);
             return conditionaProcedure;
         }
 
@@ -59,9 +59,9 @@ namespace FakeServers.Http
             return new SoapHttpRemoteServer(fakeServerLListenedUrl, hostOfRemoteServerManager);
         }
 
-        public override string[] GetReciveHistory()
+        public override string[] GetReceiveHistory()
         {
-            return SoapRemoteServerManagerClient.GetReciveHistoryForFakeServer(RemoteServerId);
+            return SoapRemoteServerManagerClient.GetReceiveHistoryForFakeServer(RemoteServerId);
         }
     }
 }

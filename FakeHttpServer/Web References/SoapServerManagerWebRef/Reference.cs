@@ -23,7 +23,7 @@ namespace FakeServers.SoapServerManagerWebRef {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="ServerManagerSoap", Namespace="http://tempuri.org/")]
@@ -33,13 +33,13 @@ namespace FakeServers.SoapServerManagerWebRef {
         
         private System.Threading.SendOrPostCallback ShutDownServerOperationCompleted;
         
-        private System.Threading.SendOrPostCallback CreateRecivedConditionalOperationCompleted;
+        private System.Threading.SendOrPostCallback CreateReceivedConditionalOperationCompleted;
         
         private System.Threading.SendOrPostCallback TheConditionalShouldBeExpectPostWithRquestBodyOperationCompleted;
         
         private System.Threading.SendOrPostCallback ForTheConditionalResponseBodyShouldBeOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetReciveHistoryForFakeServerOperationCompleted;
+        private System.Threading.SendOrPostCallback GetReceiveHistoryForFakeServerOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -86,7 +86,7 @@ namespace FakeServers.SoapServerManagerWebRef {
         public event ShutDownServerCompletedEventHandler ShutDownServerCompleted;
         
         /// <remarks/>
-        public event CreateRecivedConditionalCompletedEventHandler CreateRecivedConditionalCompleted;
+        public event CreateReceivedConditionalCompletedEventHandler CreateReceivedConditionalCompleted;
         
         /// <remarks/>
         public event TheConditionalShouldBeExpectPostWithRquestBodyCompletedEventHandler TheConditionalShouldBeExpectPostWithRquestBodyCompleted;
@@ -95,7 +95,7 @@ namespace FakeServers.SoapServerManagerWebRef {
         public event ForTheConditionalResponseBodyShouldBeCompletedEventHandler ForTheConditionalResponseBodyShouldBeCompleted;
         
         /// <remarks/>
-        public event GetReciveHistoryForFakeServerCompletedEventHandler GetReciveHistoryForFakeServerCompleted;
+        public event GetReceiveHistoryForFakeServerCompletedEventHandler GetReceiveHistoryForFakeServerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TryUpServer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -155,33 +155,33 @@ namespace FakeServers.SoapServerManagerWebRef {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateRecivedConditional", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public long CreateRecivedConditional(long ServerId, int ReciverConditionalType) {
-            object[] results = this.Invoke("CreateRecivedConditional", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateReceivedConditional", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public long CreateReceivedConditional(long ServerId, int ReciverConditionalType) {
+            object[] results = this.Invoke("CreateReceivedConditional", new object[] {
                         ServerId,
                         ReciverConditionalType});
             return ((long)(results[0]));
         }
         
         /// <remarks/>
-        public void CreateRecivedConditionalAsync(long ServerId, int ReciverConditionalType) {
-            this.CreateRecivedConditionalAsync(ServerId, ReciverConditionalType, null);
+        public void CreateReceivedConditionalAsync(long ServerId, int ReciverConditionalType) {
+            this.CreateReceivedConditionalAsync(ServerId, ReciverConditionalType, null);
         }
         
         /// <remarks/>
-        public void CreateRecivedConditionalAsync(long ServerId, int ReciverConditionalType, object userState) {
-            if ((this.CreateRecivedConditionalOperationCompleted == null)) {
-                this.CreateRecivedConditionalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateRecivedConditionalOperationCompleted);
+        public void CreateReceivedConditionalAsync(long ServerId, int ReciverConditionalType, object userState) {
+            if ((this.CreateReceivedConditionalOperationCompleted == null)) {
+                this.CreateReceivedConditionalOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateReceivedConditionalOperationCompleted);
             }
-            this.InvokeAsync("CreateRecivedConditional", new object[] {
+            this.InvokeAsync("CreateReceivedConditional", new object[] {
                         ServerId,
-                        ReciverConditionalType}, this.CreateRecivedConditionalOperationCompleted, userState);
+                        ReciverConditionalType}, this.CreateReceivedConditionalOperationCompleted, userState);
         }
         
-        private void OnCreateRecivedConditionalOperationCompleted(object arg) {
-            if ((this.CreateRecivedConditionalCompleted != null)) {
+        private void OnCreateReceivedConditionalOperationCompleted(object arg) {
+            if ((this.CreateReceivedConditionalCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CreateRecivedConditionalCompleted(this, new CreateRecivedConditionalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CreateReceivedConditionalCompleted(this, new CreateReceivedConditionalCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -252,31 +252,31 @@ namespace FakeServers.SoapServerManagerWebRef {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetReciveHistoryForFakeServer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string[] GetReciveHistoryForFakeServer(long ServerId) {
-            object[] results = this.Invoke("GetReciveHistoryForFakeServer", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetReceiveHistoryForFakeServer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string[] GetReceiveHistoryForFakeServer(long ServerId) {
+            object[] results = this.Invoke("GetReceiveHistoryForFakeServer", new object[] {
                         ServerId});
             return ((string[])(results[0]));
         }
         
         /// <remarks/>
-        public void GetReciveHistoryForFakeServerAsync(long ServerId) {
-            this.GetReciveHistoryForFakeServerAsync(ServerId, null);
+        public void GetReceiveHistoryForFakeServerAsync(long ServerId) {
+            this.GetReceiveHistoryForFakeServerAsync(ServerId, null);
         }
         
         /// <remarks/>
-        public void GetReciveHistoryForFakeServerAsync(long ServerId, object userState) {
-            if ((this.GetReciveHistoryForFakeServerOperationCompleted == null)) {
-                this.GetReciveHistoryForFakeServerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetReciveHistoryForFakeServerOperationCompleted);
+        public void GetReceiveHistoryForFakeServerAsync(long ServerId, object userState) {
+            if ((this.GetReceiveHistoryForFakeServerOperationCompleted == null)) {
+                this.GetReceiveHistoryForFakeServerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetReceiveHistoryForFakeServerOperationCompleted);
             }
-            this.InvokeAsync("GetReciveHistoryForFakeServer", new object[] {
-                        ServerId}, this.GetReciveHistoryForFakeServerOperationCompleted, userState);
+            this.InvokeAsync("GetReceiveHistoryForFakeServer", new object[] {
+                        ServerId}, this.GetReceiveHistoryForFakeServerOperationCompleted, userState);
         }
         
-        private void OnGetReciveHistoryForFakeServerOperationCompleted(object arg) {
-            if ((this.GetReciveHistoryForFakeServerCompleted != null)) {
+        private void OnGetReceiveHistoryForFakeServerOperationCompleted(object arg) {
+            if ((this.GetReceiveHistoryForFakeServerCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetReciveHistoryForFakeServerCompleted(this, new GetReciveHistoryForFakeServerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetReceiveHistoryForFakeServerCompleted(this, new GetReceiveHistoryForFakeServerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -300,11 +300,11 @@ namespace FakeServers.SoapServerManagerWebRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void TryUpServerCompletedEventHandler(object sender, TryUpServerCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TryUpServerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -326,22 +326,22 @@ namespace FakeServers.SoapServerManagerWebRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void ShutDownServerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
-    public delegate void CreateRecivedConditionalCompletedEventHandler(object sender, CreateRecivedConditionalCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void CreateReceivedConditionalCompletedEventHandler(object sender, CreateReceivedConditionalCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CreateRecivedConditionalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class CreateReceivedConditionalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal CreateRecivedConditionalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal CreateReceivedConditionalCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -356,26 +356,26 @@ namespace FakeServers.SoapServerManagerWebRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void TheConditionalShouldBeExpectPostWithRquestBodyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void ForTheConditionalResponseBodyShouldBeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
-    public delegate void GetReciveHistoryForFakeServerCompletedEventHandler(object sender, GetReciveHistoryForFakeServerCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void GetReceiveHistoryForFakeServerCompletedEventHandler(object sender, GetReceiveHistoryForFakeServerCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetReciveHistoryForFakeServerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetReceiveHistoryForFakeServerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal GetReciveHistoryForFakeServerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetReceiveHistoryForFakeServerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

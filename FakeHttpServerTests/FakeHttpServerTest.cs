@@ -19,9 +19,9 @@ namespace FakeHttpServerTests
 
         [TestMethod]
         [ExpectedException(typeof(AssertFailedException))]
-        public void FakeHttpServer_should_verified_recived_request()
+        public void FakeHttpServer_should_verified_received_request()
         {
-            base.any_IFakeServer_should_verified_recived_request();
+            base.any_IFakeServer_should_verified_received_request();
         }
 
         [TestMethod]

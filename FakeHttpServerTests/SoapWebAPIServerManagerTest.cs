@@ -67,7 +67,7 @@ namespace FakeHttpServerTests
             long serverId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
             try
             {
-                long conditionalId = client.CreateRecivedConditional(serverId,0);
+                long conditionalId = client.CreateReceivedConditional(serverId,0);
                 client.TheConditionalShouldBeExpectPostWithRquestBody(serverId, conditionalId, REQUST_BODY);
                 client.ForTheConditionalResponseBodyShouldBe(serverId, conditionalId, RESPONSE_BODY, null);
 
@@ -106,7 +106,7 @@ namespace FakeHttpServerTests
         [TestMethod]
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
         [ExpectedException(typeof(SoapException))]
-        public void remote_manager_should_throw_soapException_during_call_ShutDownServer_if_some_reciver_conditional_message_is_not_met()
+        public void remote_manager_should_throw_soapException_during_call_ShutDownServer_if_some_receiver_conditional_message_is_not_met()
         {
             SoapServerManagerWebRef.ServerManager client = new SoapServerManagerWebRef.ServerManager()
             {
@@ -116,7 +116,7 @@ namespace FakeHttpServerTests
             long serverId = client.TryUpServer(LISTNED_HOST_FAKE_SERVER);
             try
             {
-                long conditionalId = client.CreateRecivedConditional(serverId, 0);
+                long conditionalId = client.CreateReceivedConditional(serverId, 0);
                 client.TheConditionalShouldBeExpectPostWithRquestBody(serverId, conditionalId, "example");
             }
             finally
@@ -138,7 +138,7 @@ namespace FakeHttpServerTests
             try
             {
                 HttpSender.SendPost(LISTNED_HOST_FAKE_SERVER, REQUST_BODY);
-                string[] actualHistoryRequests = client.GetReciveHistoryForFakeServer(serverId);
+                string[] actualHistoryRequests = client.GetReceiveHistoryForFakeServer(serverId);
                 Assert.AreEqual(1, actualHistoryRequests.Length, "Wrong count of element for array was returned by method GetReciveHistoryForFakeServer");
                 Assert.AreEqual(REQUST_BODY, actualHistoryRequests[0], "Wrong content of element for array was returned by method GetReciveHistoryForFakeServer");
             }

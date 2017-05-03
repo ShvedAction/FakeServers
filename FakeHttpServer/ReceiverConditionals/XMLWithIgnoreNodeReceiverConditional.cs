@@ -1,14 +1,14 @@
-﻿using FakeServers.ReciverConditionals.XML;
+﻿using FakeServers.ReceiverConditionals.XML;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace FakeServers.ReciverConditionals
+namespace FakeServers.ReceiverConditionals
 {
-    public class XMLWithIgnoreNodeRreciverConditional: ReciverConditional
+    public class XMLWithIgnoreNodeReceiverConditional: ReceiverConditional
     {
 
-        public override bool compareReciveResponse(string expectedBody, string actualBody)
+        public override bool compareReceiveResponse(string expectedBody, string actualBody)
         {
             XElement expectedXML = XElement.Parse(expectedBody);
             XElement actualXML = XElement.Parse(actualBody);

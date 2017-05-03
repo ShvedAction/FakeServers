@@ -1,5 +1,5 @@
 ﻿using FakeHttpServFakeServers.Httper;
-using FakeServers.ReciverConditionals;
+using FakeServers.ReceiverConditionals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -16,27 +16,27 @@ namespace FakeServers.Http
         const string DEFFAULT_LISTNED_ADDRESS = "http://localhost:3000/";
         private HttpAsyncServer asyncServer;
 
-        private List<ConditionalProducer> recivers;
-        private List<string> reciveMessages;
+        private List<ConditionalProducer> receivers;
+        private List<string> receiveMessages;
         private ConditionalProducer deffaultAnswer = new ConditionalProducer();
 
-        private void onServerRecived(HttpListenerContext context)
+        private void onServerReceived(HttpListenerContext context)
         {
             string body;
-            using (StreamReader reciveBodyStream = new StreamReader(context.Request.InputStream))
+            using (StreamReader receiveBodyStream = new StreamReader(context.Request.InputStream))
             {
-                body = reciveBodyStream.ReadToEnd();
+                body = receiveBodyStream.ReadToEnd();
             }
-            reciveMessages.Add(body);
+            receiveMessages.Add(body);
 
             bool anyRiceveConditionalStatisvied = false;
-            foreach (var reciver in recivers)
+            foreach (var receiver in receivers)
             {
-                if (reciver.Conditional.IsSatisfied())
+                if (receiver.Conditional.IsSatisfied())
                     continue;
-                if (reciver.Conditional.CheckResponse(context, body))
+                if (receiver.Conditional.CheckResponse(context, body))
                 {
-                    reciver.Conditional.WriteResponseToContext();
+                    receiver.Conditional.WriteResponseToContext();
                     anyRiceveConditionalStatisvied = true;
                     break;
                 }
@@ -52,10 +52,10 @@ namespace FakeServers.Http
 
         public FakeHttpServer(string[] listnedAddresses)
         {
-            asyncServer = new HttpAsyncServer(listnedAddresses, (context) => onServerRecived(context));
-            reciveMessages = new List<string>();
+            asyncServer = new HttpAsyncServer(listnedAddresses, (context) => onServerReceived(context));
+            receiveMessages = new List<string>();
             asyncServer.RunServer();
-            recivers = new List<ConditionalProducer>();
+            receivers = new List<ConditionalProducer>();
             deffaultAnswer.Response(DEFAULT_RESPONSE_BODY);
         }
 
@@ -65,18 +65,18 @@ namespace FakeServers.Http
         public FakeHttpServer(): this(DEFFAULT_LISTNED_ADDRESS)
         { }
 
-        public override  ConditionalProducer ShouldRecived(IReciverConditional conditionType = null)
+        public override  ConditionalProducer ShouldReceived(IReceiverConditional conditionType = null)
         {
             var newConditional = new ConditionalProducer(conditionType);
-            recivers.Add(newConditional);
+            receivers.Add(newConditional);
             return newConditional;
         }
 
-        public override void CheckAllReciverConditional()
+        public override void CheckAllReceiverConditional()
         {
-            if (recivers.Count>0 && !recivers.Any(reciver => reciver.Conditional.IsSatisfied()))
+            if (receivers.Count>0 && !receivers.Any(receiver => receiver.Conditional.IsSatisfied()))
             {
-                Assert.Fail("Some reciver conditionals are not met.");
+                Assert.Fail("Some receiver conditionals are not met.");
             }
         }
 
@@ -85,9 +85,9 @@ namespace FakeServers.Http
             asyncServer.stop();
         }
 
-        public override string[] GetReciveHistory()
+        public override string[] GetReceiveHistory()
         {
-            return reciveMessages.ToArray();
+            return receiveMessages.ToArray();
         }
     }
 }

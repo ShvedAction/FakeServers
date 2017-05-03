@@ -8,14 +8,14 @@ namespace FakeHttpServFakeServers.Httper
     {
         private string[] listenedAddresses;       
         private HttpListener listener;
-        public delegate void OnHttpServerRecived(HttpListenerContext context);
-        private event OnHttpServerRecived OnRecived;
-        private Thread ReciverThread;
+        public delegate void OnHttpServerReceived(HttpListenerContext context);
+        private event OnHttpServerReceived OnReceived;
+        private Thread ReceiverThread;
 
-        public HttpAsyncServer(string[] listenedAddresses, OnHttpServerRecived onRecivedHandle)
+        public HttpAsyncServer(string[] listenedAddresses, OnHttpServerReceived onReceivedHandle)
         {
             this.listenedAddresses = listenedAddresses;            
-            OnRecived = onRecivedHandle;
+            OnReceived = onReceivedHandle;
         }
 
         public void stop()
@@ -46,7 +46,7 @@ namespace FakeHttpServFakeServers.Httper
             if (IsStarted())
             {
                 HttpListenerContext context = listener.EndGetContext(ar);
-                OnRecived(context);
+                OnReceived(context);
                 listener.BeginGetContext(GetContextCallback, listener);
             }
 
