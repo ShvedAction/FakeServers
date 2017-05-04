@@ -18,7 +18,7 @@ namespace FakeServers.Http
         private List<string> receiveMessages;
         private ConditionalProducer deffaultAnswer = new ConditionalProducer();
 
-        private void onServerReceived(HttpListenerContext context)
+        private void OnServerReceived(HttpListenerContext context)
         {
             string body;
             using (StreamReader receiveBodyStream = new StreamReader(context.Request.InputStream))
@@ -50,7 +50,7 @@ namespace FakeServers.Http
 
         public FakeHttpServer(string[] listnedAddresses)
         {
-            asyncServer = new HttpAsyncServer(listnedAddresses, (context) => onServerReceived(context));
+            asyncServer = new HttpAsyncServer(listnedAddresses, (context) => OnServerReceived(context));
             receiveMessages = new List<string>();
             asyncServer.RunServer();
             receivers = new List<ConditionalProducer>();

@@ -10,7 +10,6 @@ namespace FakeHttpServFakeServers.Httper
         private HttpListener listener;
         public delegate void OnHttpServerReceived(HttpListenerContext context);
         private event OnHttpServerReceived OnReceived;
-        private Thread ReceiverThread;
 
         public HttpAsyncServer(string[] listenedAddresses, OnHttpServerReceived onReceivedHandle)
         {
