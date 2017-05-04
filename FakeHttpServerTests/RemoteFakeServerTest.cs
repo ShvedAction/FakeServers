@@ -52,6 +52,12 @@ namespace FakeHttpServerTests
             SoapRemoteFakeServer.Dispose();
         }
 
+        [TestInitialize]
+        public void InconclusiveThisTests()
+        {
+            Assert.Inconclusive();
+        }
+
         [TestMethod]
         [AspNetDevelopmentServer("FakeServerManager", "../../../FakeServerManager/", "/")]
         [ExpectedException(typeof(Exception))]

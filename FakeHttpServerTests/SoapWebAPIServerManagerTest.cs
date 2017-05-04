@@ -39,6 +39,15 @@ namespace FakeHttpServerTests
             }
         }
 
+
+
+        [TestInitialize]
+        public void InconclusiveThisTests()
+        {
+            Assert.Inconclusive();
+        }
+
+
         private TestContext testContextInstance;
         /// <summary>
         ///Gets or sets the test context which provides
