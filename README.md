@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ood1asmx791wbdsg/branch/master?svg=true)](https://ci.appveyor.com/project/ShvedAction/fakeservers/branch/master)
+
 # Создание заглушек для автоматизированных тестов на C#
 
 Этот инструмент предназначен для имитации ответов HTTP серверов во время тестирования. 
