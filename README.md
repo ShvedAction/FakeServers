@@ -1,40 +1,39 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ood1asmx791wbdsg/branch/master?svg=true)](https://ci.appveyor.com/project/ShvedAction/fakeservers/branch/master)
 
-# The tool for the automatic tests fake plugs creation, made on C#
+# C# Tool for testing HTTP API with shapshots
 
-This tool is to imitate the HTTP answers during the tests. For instance, if you’d need to have fake answers from the related systems, you can raise the local host with the next example:
+This tool mocks responses from HTTP API. It's useful to make unit tests of your component, just stub the external APIs with a proxy server:
 
 ```C#
 IFakeServer MyFakeServer = new FakeHttpServer("http://localhost:3000/");
 ```
 
-With this command, you would raise the HttpAsyncServer listening appropriate address.
-
-### The repllies and requests settings for the server: 
+### Requests and Responses Settings
 
 ```C#
 MyFakeServer.ShouldRecived().Post("request body").Response("response body");
 ```
 
-Now the HTTP server would reply for the POST-method request with "request body" (once).
+The server replies once to a POST-request with the response "response body".
 
-### Incoming requests check. 
+### Incoming requests checks
 
 ```C#
 MyFakeServer.CheckAllReciverConditional();
 ```
 
-If the reply has not been received then the exception would be raised with Assert.Fail("Some receiver conditionals are not met.") из Microsoft.VisualStudio.TestTools.UnitTesting.
+If the response has not been received then the exception would be raised using `Assert.Fail("Some receiver conditionals are not met.")` from `Microsoft.VisualStudio.TestTools.UnitTesting`.
 
-For the actual incoming requests list overview you can use the "GetReciveHistory" method with: 
+To look at the actual incoming requests you can use `GetReceiveHistory` method:
 
-```C# 
-string[] actualRequests = MyFakeServer.GetReciveHistory();
+```C#
+string[] actualRequests = MyFakeServer.GetReceiveHistory();
 ```
 
-## Details.
-There is an option to manage the HTTP headers.([examples in the tests](FakeHttpServerTests/TestsForAnyIFakeServer.cs))
+## Details
 
-There is also an option to match the XML requests with the different interpretation taken into account. Also there is an option provided for the node values disregard settings.([examples in the tests](FakeHttpServerTests/ReciverConditionalsTests/XMLReciverConditionalTest.cs))
+There're some useful options:
 
-There is also an option to raise a server on remote machine.([examples in the tests](FakeHttpServerTests/RemoteFakeServerTest.cs))
+- set HTTP headers ([examples](FakeHttpServerTests/TestsForAnyIFakeServer.cs))
+- XML requests with the different object views and skipping some nodes` values ([examples](FakeHttpServerTests/ReceiverConditionalsTests/XMLReciverConditionalTest.cs))
+- start a server on remote machine ([examples](FakeHttpServerTests/RemoteFakeServerTest.cs))
