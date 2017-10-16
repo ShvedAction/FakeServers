@@ -49,6 +49,18 @@ namespace FakeHttpServerTests
             }
         }
 
+        internal void any_IFakeServer_should_able_to_set_default_response()
+        {
+            using (IFakeServer fakeserver = BuildTestingServer())
+            {
+                const string DEFAAULT_RESPONSE = "example of de";
+                fakeserver.SetDefaultResponse(DEFAAULT_RESPONSE);
+                var response = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
+                Assert.AreEqual(DEFAAULT_RESPONSE, response);
+            }
+
+        }
+
         protected void any_IFakeServer_should_stop_without_exception()
         {
             IFakeServer fakeserver = BuildTestingServer();

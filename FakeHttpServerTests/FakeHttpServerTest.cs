@@ -54,5 +54,10 @@ namespace FakeHttpServerTests
             base.any_IFakeServer_should_return_deffault_message_for_no_mathced_requests();
         }
 
+        [TestMethod]
+        public void FakeHttpServer_should_able_to_set_default_response()
+        {
+            base.any_IFakeServer_should_able_to_set_default_response();
+        }
     }
 }

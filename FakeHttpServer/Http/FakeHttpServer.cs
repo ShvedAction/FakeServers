@@ -16,7 +16,6 @@ namespace FakeServers.Http
 
         private List<ConditionalProducer> receivers;
         private List<string> receiveMessages;
-        private ConditionalProducer deffaultAnswer = new ConditionalProducer();
 
         private void OnServerReceived(HttpListenerContext context)
         {
@@ -45,7 +44,7 @@ namespace FakeServers.Http
 
         private void WriteResponseDeffultAnswer(HttpListenerContext context)
         {
-            HttpSender.WriteResponse(context.Response, DEFAULT_RESPONSE_BODY);
+            HttpSender.WriteResponse(context.Response, DefaultResponseBody);
         }
 
         public FakeHttpServer(string[] listnedAddresses)
@@ -54,7 +53,6 @@ namespace FakeServers.Http
             receiveMessages = new List<string>();
             asyncServer.RunServer();
             receivers = new List<ConditionalProducer>();
-            deffaultAnswer.Response(DEFAULT_RESPONSE_BODY);
         }
 
         public FakeHttpServer(string listnedAddress): this(new string[] { listnedAddress})
