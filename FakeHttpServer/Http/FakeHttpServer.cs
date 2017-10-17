@@ -44,7 +44,7 @@ namespace FakeServers.Http
 
         private void WriteResponseDeffultAnswer(HttpListenerContext context)
         {
-            HttpSender.WriteResponse(context.Response, DefaultResponseBody);
+            HttpSender.WriteResponse(context.Response, DefaultResponseBody, DefaultHeaders);
         }
 
         public FakeHttpServer(string[] listnedAddresses)

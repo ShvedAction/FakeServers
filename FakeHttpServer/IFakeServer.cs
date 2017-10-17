@@ -9,6 +9,6 @@ namespace FakeServers
         void StopServer();
         void CheckAllReceiverConditional();
         string[] GetReceiveHistory();
-        void SetDefaultResponse(string defaultResponse);
+        void SetDefaultResponse(string defaultResponse, string[] headers);
     }
 }

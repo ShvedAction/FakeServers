@@ -54,9 +54,14 @@ namespace FakeHttpServerTests
             using (IFakeServer fakeserver = BuildTestingServer())
             {
                 const string DEFAAULT_RESPONSE = "example of de";
-                fakeserver.SetDefaultResponse(DEFAAULT_RESPONSE);
-                var response = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY);
+                const string HEADER_KEY = "Content-Type";
+                const string HEADER_VAL = "text/xml";
+                string[] headers = { HEADER_KEY+": "+ HEADER_VAL };
+                WebHeaderCollection responseHeaders = null;
+                fakeserver.SetDefaultResponse(DEFAAULT_RESPONSE, headers);
+                string response = HttpSender.SendPost(ListenedFakeServerURL, REQUEST_SAMPLE_BODY, out responseHeaders);
                 Assert.AreEqual(DEFAAULT_RESPONSE, response);
+                Assert.AreEqual(HEADER_VAL, responseHeaders[HEADER_KEY]);
             }
 
         }

@@ -7,6 +7,7 @@ namespace FakeServers
     {
         public static string DEFAULT_RESPONSE_BODY = "this is a value of default response body";
         protected string DefaultResponseBody = DEFAULT_RESPONSE_BODY;
+        protected string[] DefaultHeaders;
 
         public abstract void CheckAllReceiverConditional();
 
@@ -17,9 +18,10 @@ namespace FakeServers
 
         public abstract string[] GetReceiveHistory();
 
-        public void SetDefaultResponse(string defaultResponse)
+        public void SetDefaultResponse(string defaultResponse, string[] headers)
         {
             DefaultResponseBody = defaultResponse;
+            DefaultHeaders = headers;
         }
 
         public abstract ConditionalProducer ShouldReceived(IReceiverConditional conditionType = null);
